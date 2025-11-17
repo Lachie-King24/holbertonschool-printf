@@ -23,7 +23,7 @@ int _printf(const char *format, ...)
 	count = 0;
 
 	if (format == NULL)
-	return (total);
+	return (total + 5);
 	
 	else
 	{
