@@ -26,14 +26,15 @@ int count_string(va_list args)
 
 	length = 0;
 
-	if (s != NULL)
+	if (s == NULL)
+		s = "(null)";
+
+	while (s[length] != '\0')
 	{
-		while (s[length] != '\0')
-		{
-			length++;
-		}
-		write(1, s, length);
+		length++;
 	}
+	write(1, s, length);
+
 	return (length);
 }
 
