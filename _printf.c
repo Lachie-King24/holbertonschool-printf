@@ -33,7 +33,6 @@ int _printf(const char *format, ...)
 			{
 				if (format[count + 1] == dir[count_dir].symbol[0])
 				{
-					dir[count_dir].print(args);
 					total += dir[count_dir].print(args);
 				}
 			}
