@@ -38,7 +38,7 @@ int _printf(const char *format, ...)
 				}
 			}
 			else
-				total++
+				total++;
 			count_dir++;
 		}
 		count++;
