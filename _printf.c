@@ -6,53 +6,63 @@
  * Return: Number of characters printed, exc null byte
  */
 
+#include <stdarg.h>
+#include <unistd.h>
+#include "main.h"
+
 int _printf(const char *format, ...)
 {
-	va_list args;
-	int count;
-	int count_dir;
-	int total;
-	dir dir[] = {
-		{"c", count_char},
-		{"s", count_string},
-		{"%", count_percent},
-		{NULL, NULL}
-	};
+    va_list args;
+    int count = 0, count_dir, total = 0, match;
+    dir dir[] = {
+        {"c", count_char},
+        {"s", count_string},
+        {"%", count_percent},
+        {NULL, NULL}
+    };
 
-	total = 0;
-	count = 0;
+    /* Safe: if format is NULL, print nothing */
+    if (!format)
+        return 0;
 
-	if (format == NULL)
-	return (0);
-	
-	else
-	{
-		va_start(args, format);
+    va_start(args, format);
 
-		while (format[count] != '\0')
-		{
-			if (format[count] == '%')
-			{
-				if (format[count + 1] == '\0')
-        				break;
-				for (count_dir = 0; dir[count_dir].symbol != NULL; count_dir++)
-				{
-					if (format[count + 1] == dir[count_dir].symbol[0])
-					{
-						total += dir[count_dir].print(args);
-						break;
-					}
-				}
-				count += 2;
-			}
-			else
-			{
-				write(1, &format[count], 1);
-				total++;
-				count++;
-			}
-		}
-		va_end(args);
-		return (total);
-	}
+    while (format[count] != '\0')
+    {
+        if (format[count] == '%')
+        {
+            /* If % is the last character, stop safely */
+            if (format[count + 1] == '\0')
+                break;
+
+            match = 0;
+            for (count_dir = 0; dir[count_dir].symbol != NULL; count_dir++)
+            {
+                if (format[count + 1] == dir[count_dir].symbol[0])
+                {
+                    total += dir[count_dir].print(args);
+                    match = 1;
+                    break;
+                }
+            }
+
+            if (match)
+                count += 2;  /* Skip format specifier */
+            else
+            {
+                write(1, &format[count], 1);  /* Print unknown % literally */
+                total++;
+                count++;
+            }
+        }
+        else
+        {
+            write(1, &format[count], 1);  /* Print normal character */
+            total++;
+            count++;
+        }
+    }
+
+    va_end(args);
+    return total;
 }
