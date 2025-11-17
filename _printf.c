@@ -12,6 +12,7 @@ int _printf(const char *format, ...)
 	int count; 
 	int count_dir; 
 	int total; 
+	int match;
 	dir dir[] = { 
 		{"c", count_char}, 
 		{"s", count_string}, 
