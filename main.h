@@ -6,7 +6,9 @@
 #include <unistd.h>
 
 /**
- * Header file containing functions and structures
+ * _printf - copies main function printf
+ * @format: input to print
+ * Return: count of result
  */
 
 int _printf(const char *format, ...);
@@ -14,7 +16,13 @@ int count_char(va_list args);
 int count_string(va_list args);
 int count_percent(va_list args);
 
-struct directives 
+/**
+ * struct directives - structure for % directives
+ * @symbol: specifier (c, s, %)
+ * @print: function pointer to the correct handler
+ */
+
+struct directives
 {
 	char *symbol;
 	int (*print)(va_list);
