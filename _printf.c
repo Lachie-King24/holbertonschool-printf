@@ -35,14 +35,22 @@ int _printf(const char *format, ...)
 				va_end(args);
 				return (-1);
 			}
+			match = 0;
 			for (count_dir = 0; dir[count_dir].symbol != NULL; count_dir++) 
 			{ 
 				if (format[count + 1] == dir[count_dir].symbol[0]) 
 				{ 
 					total += dir[count_dir].print(args); 
+					match = 1;
 					break; 
 				} 
 			} 
+			if (!match)
+			{
+			write(1, &format[count], 1);
+			write(1, &format[count + 1], 1);
+			total += 2;
+			}
 			count += 2; 
 		} 
 		else 
