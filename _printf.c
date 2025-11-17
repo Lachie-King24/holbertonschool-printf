@@ -12,7 +12,6 @@ int _printf(const char *format, ...)
 	int count;
 	int count_dir;
 	int total;
-	int match;
 	dir dir[] = {
 		{"c", count_char},
 		{"s", count_string},
@@ -34,13 +33,11 @@ int _printf(const char *format, ...)
 		{
 			if (format[count + 1] == '\0')
         			break;
-			match = 0;
 			for (count_dir = 0; dir[count_dir].symbol != NULL; count_dir++)
 			{
 				if (format[count + 1] == dir[count_dir].symbol[0])
 				{
 					total += dir[count_dir].print(args);
-					match = 1;
 					break;
 				}
 			}
