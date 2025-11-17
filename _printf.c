@@ -44,8 +44,7 @@ int _printf(const char *format, ...)
 					break;
 				}
 			}
-			if (match)
-				count += 2;
+			count += 2;
 		}
 		else
 		{
