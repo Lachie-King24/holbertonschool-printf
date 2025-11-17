@@ -38,7 +38,10 @@ int _printf(const char *format, ...)
 				}
 			}
 			else
+			{
+				write(1, &format, 1);
 				total++;
+			}
 			count_dir++;
 		}
 		count++;
