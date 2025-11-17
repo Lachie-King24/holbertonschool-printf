@@ -27,7 +27,7 @@ int count_string(va_list args)
 	length = 0;
 
 	if (s == NULL)
-		s = "(null)";
+		return (0);
 
 	while (s[length] != '\0')
 	{
