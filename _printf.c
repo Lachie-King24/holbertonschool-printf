@@ -37,10 +37,12 @@ int _printf(const char *format, ...)
 					total += dir[count_dir].print(args);
 				}
 			}
+			else
+				total++
 			count_dir++;
 		}
 		count++;
 	}
-	return (total);
 	va_end(args);
+	return (total);
 }
