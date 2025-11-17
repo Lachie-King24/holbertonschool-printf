@@ -29,6 +29,8 @@ int _printf(const char *format, ...)
 	{
 		if (format[count] == '%')
 		{
+			if (format[count + 1] == '\0')
+        			break;
 			match = 0;
 			for (count_dir = 0; dir[count_dir].symbol != NULL; count_dir++)
 			{
