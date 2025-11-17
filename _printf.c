@@ -24,32 +24,35 @@ int _printf(const char *format, ...)
 
 	if (!format)
 	return (0);
-
-	va_start(args, format);
-
-	while (format[count] != '\0')
+	
+	else
 	{
-		if (format[count] == '%')
+		va_start(args, format);
+
+		while (format[count] != '\0')
 		{
-			if (format[count + 1] == '\0')
-        			break;
-			for (count_dir = 0; dir[count_dir].symbol != NULL; count_dir++)
+			if (format[count] == '%')
 			{
-				if (format[count + 1] == dir[count_dir].symbol[0])
+				if (format[count + 1] == '\0')
+        				break;
+				for (count_dir = 0; dir[count_dir].symbol != NULL; count_dir++)
 				{
-					total += dir[count_dir].print(args);
-					break;
+					if (format[count + 1] == dir[count_dir].symbol[0])
+					{
+						total += dir[count_dir].print(args);
+						break;
+					}
 				}
+				count += 2;
 			}
-			count += 2;
+			else
+			{
+				write(1, &format[count], 1);
+				total++;
+				count++;
+			}
 		}
-		else
-		{
-			write(1, &format[count], 1);
-			total++;
-			count++;
-		}
+		va_end(args);
+		return (total);
 	}
-	va_end(args);
-	return (total);
 }
