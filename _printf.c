@@ -30,8 +30,11 @@ int _printf(const char *format, ...)
 	{ 
 		if (format[count] == '%') 
 		{ 
-			if (format[count + 1] == '\0') 
-				break; 
+			if (format[count + 1] == '\0')
+			{	
+				va_end(args);
+				return (-1);
+			}
 			for (count_dir = 0; dir[count_dir].symbol != NULL; count_dir++) 
 			{ 
 				if (format[count + 1] == dir[count_dir].symbol[0]) 
