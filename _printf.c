@@ -25,6 +25,9 @@ int _printf(const char *format, ...)
 
 	va_start(args, format);
 
+	if (!format)
+		return (0);
+
 	while (format[count] != '\0')
 	{
 		if (format[count] == '%')
@@ -43,12 +46,6 @@ int _printf(const char *format, ...)
 			}
 			if (match)
 				count += 2;
-			else
-			{
-				write(1, &format[count], 1);
-				total++;
-				count++;
-			}
 		}
 		else
 		{
