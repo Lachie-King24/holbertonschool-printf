@@ -22,10 +22,10 @@ int _printf(const char *format, ...)
 	total = 0;
 	count = 0;
 
-	va_start(args, format);
-
 	if (!format)
-		return (0);
+	return (0);
+
+	va_start(args, format);
 
 	while (format[count] != '\0')
 	{
