@@ -60,7 +60,7 @@ int count_percent(va_list args)
 
 int count_int(va_list args)
 {
-int num = va_args(args, int);
+int num = va_arg(args, int);
 unsigned int n;
 char buffer[12];
 int i;
