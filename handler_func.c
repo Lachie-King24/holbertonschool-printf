@@ -51,3 +51,47 @@ int count_percent(va_list args)
 	write(1, &percent, 1);
 	return (1);
 }
+
+/**
+ * count_int - prints an int to stdout
+ * @args: va_list containing int
+ * Return: int
+ */
+
+int count_int(va_list args)
+{
+int num = va_args(args, int);
+unsigned int n;
+char buffer[12];
+int i;
+int length;
+
+i = 0;
+length = 0;
+
+if (num < 0)
+{
+	write(1, "-", 1);
+	length++;
+	n = -num;
+}
+else
+	n = num;
+
+if (num == 0)
+{
+	write(1, "0", 1);
+	return (length + 1);
+}
+for (i = 0; n > 0; i++)
+{
+	buffer[i] = (n % 10) + '0';
+	n /= 10;
+}
+for (i = i - 1; i >= 0; i--)
+{
+	write(1, &buffer[i], 1);
+	length++;
+}
+return (length);
+}
