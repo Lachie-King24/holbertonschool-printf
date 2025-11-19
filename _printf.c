@@ -15,7 +15,7 @@ int _printf(const char *format, ...)
 	int match;
 	dir dir[] = { {"c", count_char}, {"s", count_string},
 		{"%", count_percent}, {"d", count_int},
-		{"i", count_int}, {NULL, NULL}
+		{"i", count_int}, {"b", conv_int}, {NULL, NULL}
 	};
 
 	total = 0;

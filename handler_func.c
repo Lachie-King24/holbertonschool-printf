@@ -95,3 +95,34 @@ for (i = i - 1; i >= 0; i--)
 }
 return (length);
 }
+
+/**
+ * conv_int - converts an unsigned int to binary
+ * @args: va_list containing int
+ * Return:
+ */
+
+int conv_int(va_list args)
+{
+int binaryNum[33];
+int count;
+int loopCount;
+char tmp;
+unsigned int num = va_arg(args, unsigned int);  
+
+count = 0;
+
+while (num > 0)
+{
+	binaryNum[count] = num % 2;
+	num = num / 2;
+	count++;
+}
+
+for (loopCount = count - 1; loopCount >= 0; loopCount--)
+{
+	tmp = binaryNum[loopCount] + '0';
+	write(1, &tmp, 1);
+}
+return (count);
+}

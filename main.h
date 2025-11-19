@@ -16,6 +16,7 @@ int count_char(va_list args);
 int count_string(va_list args);
 int count_percent(va_list args);
 int count_int(va_list args);
+int conv_int(va_list args);
 
 /**
  * struct directives - structure for % directives
