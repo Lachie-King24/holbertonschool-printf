@@ -114,8 +114,9 @@ count = 0;
 
 if (num == 0)
 {
-tmp = binaryNum[count] + '0';
+tmp = '0';
 write(1, &tmp, 1);
+return (1);
 }
 
 while (num > 0)
