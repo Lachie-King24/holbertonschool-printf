@@ -10,8 +10,7 @@ int count_char(va_list args)
 {
 	char c = va_arg(args, int);
 
-	write(1, &c, 1);
-	return (1);
+	return (add_to_buffer(c));
 }
 
 /**
@@ -29,12 +28,11 @@ int count_string(va_list args)
 	if (s == NULL)
 		s = "(null)";
 
-	while (s[length] != '\0')
+	while (*s)
 	{
+		add_to_buffer(*s++);
 		length++;
 	}
-	write(1, s, length);
-
 	return (length);
 }
 
@@ -45,11 +43,8 @@ int count_string(va_list args)
  */
 int count_percent(va_list args)
 {
-	char percent = '%';
-
 	(void) args;
-	write(1, &percent, 1);
-	return (1);
+	return (add_to_buffer('%'));
 }
 
 /**
@@ -71,7 +66,7 @@ length = 0;
 
 if (num < 0)
 {
-	write(1, "-", 1);
+	add_to_buffer('-');
 	length++;
 	n = -num;
 }
@@ -80,17 +75,16 @@ else
 
 if (num == 0)
 {
-	write(1, "0", 1);
-	return (length + 1);
+	return (add_to_buffer('0'));
 }
-for (i = 0; n > 0; i++)
+while (n > 0)
 {
-	buffer[i] = (n % 10) + '0';
+	buffer[i++] = (n % 10) + '0';
 	n /= 10;
 }
-for (i = i - 1; i >= 0; i--)
+while (i-- > 0)
 {
-	write(1, &buffer[i], 1);
+	add_to_buffer(buffer[i]);
 	length++;
 }
 return (length);

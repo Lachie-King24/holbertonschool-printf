@@ -1,5 +1,28 @@
 #include "main.h"
 
+char buffer[1024];
+int buff_index = 0;
+
+int add_to_buffer(char c)
+{
+	if (buff_index >= 1024)
+	{
+		write(1, buffer, buff_index);
+		buff_index = 0;
+	}
+	buffer[buff_index++] = c;
+	return (1);
+}
+
+void flush_buffer(void)
+{
+	if (buff_index > 0)
+	{
+		write(1, buffer, buff_index);
+		buff_index = 0;
+	}
+}
+
 /**
  * _printf - a duplicate function to the standard printf
  * @format: a character string, may or may not contain directives
@@ -47,19 +70,20 @@ int _printf(const char *format, ...)
 			}
 			if (!match)
 			{
-			write(1, &format[count], 1);
-			write(1, &format[count + 1], 1);
-			total += 2;
+				add_to_buffer(format[count]);
+				add_to_buffer(format[count + 1]);
+				total += 2;
 			}
 			count += 2;
 		}
 		else
 		{
-			write(1, &format[count], 1);
+			add_to_buffer(format[count]);
 			total++;
 			count++;
 		}
 	}
 	va_end(args);
+	flush_buffer();
 	return (total);
 }

@@ -11,17 +11,14 @@ int conv_int(va_list args)
 int binaryNum[33];
 int count;
 int loopCount;
-char tmp;
+int length;
 unsigned int num = va_arg(args, unsigned int);
 
 count = 0;
+length = 0;
 
 if (num == 0)
-{
-tmp = '0';
-write(1, &tmp, 1);
-return (1);
-}
+	return (add_to_buffer('0'));
 
 while (num > 0)
 {
@@ -32,10 +29,10 @@ while (num > 0)
 
 for (loopCount = count - 1; loopCount >= 0; loopCount--)
 {
-        tmp = binaryNum[loopCount] + '0';
-        write(1, &tmp, 1);
+        add_to_buffer(binaryNum[loopCount] + '0');
+        length++;
 }
-return (count);
+return (length);
 }
 
 /**
@@ -50,16 +47,13 @@ int conv_baset(va_list args)
 	int digits[10];
 	int count;
 	int loopCount;
-	char tmp;
+	int length;
 
 	count = 0;
+	length = 0;
 
 	if (num == 0)
-	{
-		tmp = '0';
-		write(1, &tmp, 1);
-		return (1);
-	}
+		return (add_to_buffer('0'));
 
 	while (num > 0)
 	{
@@ -70,10 +64,10 @@ int conv_baset(va_list args)
 
 	for (loopCount = count - 1; loopCount >= 0; loopCount--)
 	{
-		tmp = digits[loopCount] + '0';
-		write(1, &tmp, 1);
+		add_to_buffer(digits[loopCount] + '0');
+		length++;
 	}
-	return (count);
+	return (length);
 }
 
 /**
@@ -88,16 +82,13 @@ unsigned int num = va_arg(args, unsigned int);
         int digits[12];
         int count;
         int loopCount;
-        char tmp;
+        int length;
 
         count = 0;
+	length = 0;
 
         if (num == 0)
-        {
-                tmp = '0';
-                write(1, &tmp, 1);
-                return (1);
-        }
+		return (add_to_buffer('0'));
 
         while (num > 0)
         {
@@ -108,10 +99,10 @@ unsigned int num = va_arg(args, unsigned int);
 
         for (loopCount = count - 1; loopCount >= 0; loopCount--)
         {
-                tmp = digits[loopCount] + '0';
-                write(1, &tmp, 1);
+                add_to_buffer(digits[loopCount] + '0');
+                length++;
         }
-        return (count);
+        return (length);
 }
 
 /**
@@ -126,16 +117,14 @@ unsigned int num = va_arg(args, unsigned int);
         int digits[10];
         int count;
         int loopCount;
+	int length;
         char tmp;
 
         count = 0;
+	length = 0;
 
-        if (num == 0)
-        {
-                tmp = '0';
-                write(1, &tmp, 1);
-                return (1);
-        }
+	if (num == 0)
+		return (add_to_buffer('0'));
 
         while (num > 0)
         {
@@ -147,16 +136,13 @@ unsigned int num = va_arg(args, unsigned int);
         for (loopCount = count - 1; loopCount >= 0; loopCount--)
         {
 		if (digits[loopCount] < 10)
-		{
 			tmp = digits[loopCount] + '0';
-		}
 		else
-		{
 			tmp = digits[loopCount] - 10 + 97;
-		}
-                write(1, &tmp, 1);
+                add_to_buffer(tmp);
+		length++;
         }
-        return (count);
+        return (length);
 }
 
 /**
@@ -167,20 +153,18 @@ unsigned int num = va_arg(args, unsigned int);
 
 int conv_upphec(va_list args)
 {
-unsigned int num = va_arg(args, unsigned int);
+	unsigned int num = va_arg(args, unsigned int);
         int digits[10];
         int count;
         int loopCount;
+	int length;
         char tmp;
 
         count = 0;
+	length = 0;
 
         if (num == 0)
-        {
-                tmp = '0';
-                write(1, &tmp, 1);
-                return (1);
-        }
+		return (add_to_buffer('0'));
 
         while (num > 0)
         {
@@ -191,15 +175,12 @@ unsigned int num = va_arg(args, unsigned int);
 
         for (loopCount = count - 1; loopCount >= 0; loopCount--)
         {
-                if (digits[loopCount] < 10)
-                {
-                        tmp = digits[loopCount] + '0';
-                }
-                else
-                {
-                        tmp = digits[loopCount] - 10 + 65;
-                }
-                write(1, &tmp, 1);
+		if (digits[loopCount] < 10)
+			tmp = digits[loopCount] + '0';
+		else
+			tmp = digits[loopCount] - 10 + 65;
+                add_to_buffer(tmp);
+		length++;
         }
-        return (count);
+        return (length);
 }
