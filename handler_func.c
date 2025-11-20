@@ -112,6 +112,12 @@ unsigned int num = va_arg(args, unsigned int);
 
 count = 0;
 
+if (num == 0)
+{
+tmp = binaryNum[count] + '0';
+write(1, &tmp, 1);
+}
+
 while (num > 0)
 {
 	binaryNum[count] = num % 2;
