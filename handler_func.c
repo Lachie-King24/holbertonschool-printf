@@ -89,3 +89,44 @@ while (i-- > 0)
 }
 return (length);
 }
+
+int count_nonprint(va_list args)
+{
+	char *s = va_arg(args, char *);
+	int length;
+	int count;
+	char c;
+	char hex[3];
+	unsigned char uc;
+
+	s = va_arg(args, char *);
+	length = 0;
+
+	if (!s)
+		s = "(null)";
+
+	for (count = 0; s[count] != '\0'; count++)
+	{
+		c = s[i];
+		if ((c > 0 && c < 32) || (c >= 127))
+		{
+			add_to_buffer('\\');
+			add_to_buffer('x');
+
+			uc = (unsigned char)c;
+			hex[0] = "0123456789ABCDEF"[uc / 16];
+			hex[1] = "0123456789ABCDEF"[uc % 16];
+
+			add_to_buffer(hex[0]);
+			add_to_buffer(hex[1]);
+
+			length += 4;	
+		}
+		else
+		{
+			add_to_buffer(c);
+			length++;
+		}
+	}
+	return (length);
+}
