@@ -23,6 +23,7 @@ int conv_lowhec(va_list args);
 int conv_upphec(va_list args);
 int add_to_buffer(char c);
 void flush_buffer(void);
+int count_nonprint(va_list args);
 
 /**
  * struct directives - structure for % directives
