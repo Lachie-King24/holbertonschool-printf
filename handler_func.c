@@ -136,7 +136,7 @@ int count_pointer(va_list args)
 	unsigned long addr;
 	char hex[16];
 	int i;
-	int j;
+	int jg
 	int length;
 	int digit;
 	i = 0;
@@ -147,10 +147,10 @@ int count_pointer(va_list args)
 
 	if (ptr == NULL)
 	{
-	char *null = "(null)";
-	for (j = 0; null[j] != '\0'; j++)
-		add_to_buffer(null[j]);
-	return (6);
+	char *nil = "(nil)";
+	for (j = 0; nil[j] != '\0'; j++)
+		add_to_buffer(nil[j]);
+	return (5);
 	}
 
 	add_to_buffer('0');
