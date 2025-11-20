@@ -144,16 +144,17 @@ int count_pointer(va_list args)
 	ptr = va_arg(args, void *);
 	addr = (unsigned long)ptr;
 
+	if (ptr == NULL)
+	{
+	char *null = "(null)";
+	for (j = 0; null[j] != '\0'; j++)
+		add_to_buffer(null[j]);
+	return (6);
+	}
+
 	add_to_buffer('0');
 	add_to_buffer('x');
 	length += 2;
-
-	if (addr == 0)
-	{
-		add_to_buffer('0');
-		length++;
-		return (length);
-	}
 
 	while (addr > 0)
 	{
