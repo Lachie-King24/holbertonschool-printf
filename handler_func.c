@@ -164,4 +164,5 @@ int count_pointer(va_list args)
 			hex[i++] = digit - 10 + 'a';
 		addr /= 16;
 	}
+	return (length);
 }
