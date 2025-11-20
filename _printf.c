@@ -40,7 +40,8 @@ int _printf(const char *format, ...)
 		{"%", count_percent}, {"d", count_int},
 		{"i", count_int}, {"b", conv_int}, 
 		{"u", conv_baset}, {"o", conv_oct}, {"x", conv_lowhec},
-		{"X", conv_upphec}, {"S", count_nonprint}, {NULL, NULL}
+		{"X", conv_upphec}, {"S", count_nonprint}, 
+		{"p", count_pointer}, {NULL, NULL}
 	};
 
 	total = 0;

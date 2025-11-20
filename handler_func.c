@@ -129,3 +129,39 @@ int count_nonprint(va_list args)
 	}
 	return (length);
 }
+
+int count_pointer(va_list args)
+{
+	void *ptr;
+	unsigned long addr;
+	char hex[16];
+	int i;
+	int length;
+	int digit;
+	i = 0;
+	length = 0;
+
+	ptr = va_arg(args, void *);
+	addr = (unsigned long)ptr;
+
+	add_to_buffer('0');
+	add_to_buffer('x');
+	length += 2;
+
+	if (addr == 0)
+	{
+		add_to_buffer('0');
+		length++;
+		return (length);
+	}
+
+	while (addr > 0)
+	{
+		digit = addr % 16;
+		if (digit < 10)
+			hex[i++] = digit + '0';
+		else
+			hex[i++] = digit - 10 + 'a';
+		addr /= 16;
+	}
+}
