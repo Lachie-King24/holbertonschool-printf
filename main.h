@@ -21,6 +21,8 @@ int conv_baset(va_list args);
 int conv_oct(va_list args);
 int conv_lowhec(va_list args);
 int conv_upphec(va_list args);
+int add_to_buffer(char c);
+void flush_buffer(void);
 
 /**
  * struct directives - structure for % directives
