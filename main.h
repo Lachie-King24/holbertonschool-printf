@@ -16,7 +16,7 @@ int count_char(va_list args);
 int count_string(va_list args);
 int count_percent(va_list args);
 int count_int(va_list args);
-int conv_int(va_list args);
+int conv_baset(va_list args);
 int conv_oct(va_list args);
 int conv_lowhec(va_list args);
 int conv_upphec(va_list args);
