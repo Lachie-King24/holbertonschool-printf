@@ -136,7 +136,7 @@ int count_pointer(va_list args)
 	unsigned long addr;
 	char hex[16];
 	int i;
-	int j
+	int j;
 	int length;
 	int digit;
 	i = 0;
