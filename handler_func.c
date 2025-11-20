@@ -107,7 +107,7 @@ int count_nonprint(va_list args)
 
 	for (count = 0; s[count] != '\0'; count++)
 	{
-		c = s[i];
+		c = s[count];
 		if ((c > 0 && c < 32) || (c >= 127))
 		{
 			add_to_buffer('\\');
