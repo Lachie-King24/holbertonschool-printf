@@ -85,7 +85,7 @@ int conv_baset(va_list args)
 int conv_oct(va_list args)
 {
 unsigned int num = va_arg(args, unsigned int);
-        int digits[10];
+        int digits[12];
         int count;
         int loopCount;
         char tmp;
