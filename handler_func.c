@@ -99,7 +99,6 @@ int count_nonprint(va_list args)
 	char hex[3];
 	unsigned char uc;
 
-	s = va_arg(args, char *);
 	length = 0;
 
 	if (!s)
